@@ -21,7 +21,7 @@ services:
         condition: service_healthy
     volumes:
       - "./backend/.env:/app/.env"
-      - "./volumes/backend:/backend/"
+      - "./volumes/backend:/app/"
     ports:
       - "8000:8000"
     labels:

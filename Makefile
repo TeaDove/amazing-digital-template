@@ -8,6 +8,9 @@ backend-install:
 backend-run:
 	cd backend && $(PYTHON) web_entrypoint.py
 
+backend-docker-exec:
+	docker-compose exec backend_web /bin/bash
+
 lint:
 	pre-commit run -a
 
