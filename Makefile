@@ -11,7 +11,7 @@ backend-run:
 infra-run:
 	docker-compose -f docker-compose-infra.yaml up -d
 
-pull-update:
+update:
 	git pull
 	docker-compose up -d --build
 	docker-compose logs -f backend_web
