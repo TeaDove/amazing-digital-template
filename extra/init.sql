@@ -1,5 +1,0 @@
-GRANT ALL PRIVILEGES ON DATABASE db_main TO db_main;
-
-\c db_main;
-
-CREATE SCHEMA IF NOT EXISTS public;

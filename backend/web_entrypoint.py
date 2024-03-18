@@ -15,6 +15,10 @@ if __name__ == "__main__":
         app_settings.uvicorn.port,
         app_settings.uvicorn.workers,
     )
+    if not app_settings.uvicorn.ssl:
+        app_settings.uvicorn.ssl_keyfile = None
+        app_settings.uvicorn.ssl_certfile = None
+
     uvicorn.run(
         "web_entrypoint:uvicorn_app",
         host=app_settings.uvicorn.host,

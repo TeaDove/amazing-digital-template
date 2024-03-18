@@ -8,6 +8,9 @@ backend-install:
 backend-run:
 	cd backend && $(PYTHON) web_entrypoint.py
 
+lint:
+	pre-commit run -a
+
 infra-run:
 	docker-compose -f docker-compose-infra.yaml up -d
 
@@ -15,9 +18,6 @@ update:
 	git pull
 	docker-compose up -d --build
 	docker-compose logs -f backend_web
-
-lint:
-	pre-commit run -a
 
 logs:
 	docker-compose logs -f backend_web

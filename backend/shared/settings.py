@@ -9,6 +9,7 @@ class UvicornSettings(BaseModel):
     port: int = 8000
     workers: int = mp.cpu_count() * 2
     log_level: str = "WARNING"
+    ssl: bool = False
     ssl_keyfile: str | None = None
     ssl_certfile: str | None = None
 
