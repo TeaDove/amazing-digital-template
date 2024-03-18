@@ -7,8 +7,8 @@ services:
       _UVICORN__HOST: "0.0.0.0"
       _UVICORN__PORT: 8000
       _UVICORN__SSL: "true"
-      _UVICORN__SSL_KEYFILE: "certs/privkey.pem"
-      _UVICORN__SSL_CERTFILE: "certs/fullchain.pem"
+      _UVICORN__SSL_KEYFILE: "data/certs/privkey.pem"
+      _UVICORN__SSL_CERTFILE: "data/certs/fullchain.pem"
       _REDIS__HOST: "redis"
       _PG__HOST: "postgres"
     build:
@@ -21,7 +21,7 @@ services:
         condition: service_healthy
     volumes:
       - "./backend/.env:/app/.env"
-      - "./volumes/backend:/app/"
+      - "./volumes/backend:/app/data"
     ports:
       - "8000:8000"
     labels:
