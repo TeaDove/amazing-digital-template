@@ -9,7 +9,7 @@ ENV PYTHONFAULTHANDLER=1 \
     POETRY_VERSION=1.0.0
 
 RUN apt-get update && \
-    apt-get install -y gcc python3-dev && \
+    apt-get install -y gcc python3-dev curl && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install "poetry==1.8.2"
 

@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       _UVICORN__HOST: "0.0.0.0"
-      _UVICORN__PORT: 8001
+      _UVICORN__PORT: 8000
       _REDIS__HOST: "redis"
       _PG__HOST: "postgres"
     build:
@@ -20,7 +20,7 @@ services:
       - "./backend/.env:/app/.env"
       - "./volumes/backend:/backend/"
     ports:
-      - 8000:8001
+      - "8001:8000"
     labels:
       - "autoheal=true"
     healthcheck:
