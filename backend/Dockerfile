@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
@@ -9,9 +9,9 @@ ENV PYTHONFAULTHANDLER=1 \
     POETRY_VERSION=1.0.0
 
 RUN apt-get update && \
-    apt-get install -y gcc python3-dev \
+    apt-get install -y gcc python3-dev && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install "poetry==1.3.2"
+RUN pip install "poetry==1.8.2"
 
 COPY pyproject.toml ./
 
