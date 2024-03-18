@@ -11,5 +11,9 @@ backend-run:
 infra-run:
 	docker-compose -f docker-compose-infra.yaml up -d
 
+all-run-docker:
+	docker-compose up -d
+	docker-compose logs -f backend_web
+
 lint:
 	pre-commit run -a
