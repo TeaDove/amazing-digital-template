@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 import redis.asyncio as redis
-
 from shared.settings import app_settings
 
 

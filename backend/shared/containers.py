@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from service.heath_service import HeathService
-from repository.redis_repository import RedisRepository
 from repository.pg_repository import PgRepository
+from repository.redis_repository import RedisRepository
+from service.heath_service import HeathService
 
 
 @dataclass

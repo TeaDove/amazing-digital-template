@@ -1,7 +1,7 @@
 import enum
 
-from fastapi import APIRouter
-
+from fastapi import APIRouter, status
+from fastapi.responses import UJSONResponse
 from presentation.dependencies import container
 from presentation.web.schemas import HealthResponse, HealthStatuses
 from shared.base import logger
@@ -19,7 +19,7 @@ class Tags(str, enum.Enum):
     response_model_exclude_none=True,
     tags=[Tags.SERVICE],
 )
-async def check_server_health() -> HealthResponse:
+async def check_server_health() -> UJSONResponse:
     """
     Check service health
     """
@@ -27,8 +27,13 @@ async def check_server_health() -> HealthResponse:
         await container.heath_service.check()
     except Exception as exc:
         logger.exception("Exception while checking health")
-        return HealthResponse(
-            status=HealthStatuses.ERR, error=f"{exc.__class__.__name__}: {str(exc)}"
+        return UJSONResponse(
+            content=HealthResponse(
+                status=HealthStatuses.ERR, error=f"{exc.__class__.__name__}: {str(exc)}"
+            ).jsonable_encoder(by_alias=True),
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    return HealthResponse(status=HealthStatuses.OK)
+    return UJSONResponse(
+        HealthResponse(status=HealthStatuses.OK).jsonable_encoder(by_alias=True)
+    )

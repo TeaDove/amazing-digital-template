@@ -1,8 +1,7 @@
+from shared.ulid import ulid_as_uuid
 from sqlalchemy import BigInteger, Column, MetaData
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
-
-from shared.ulid import ulid_as_uuid
 
 metadata_obj = MetaData(schema="public")
 

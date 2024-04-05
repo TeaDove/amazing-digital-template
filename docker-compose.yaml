@@ -1,7 +1,7 @@
 version: '3.1'
 
 services:
-  backend_web:
+  backend:
     restart: always
     environment:
       _UVICORN__HOST: "0.0.0.0"
@@ -38,6 +38,30 @@ services:
           cpus: '0.75'
           memory: 1800M
 
+  frontend:
+    restart: always
+    environment: {}
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "433:433"
+    labels:
+      - "autoheal=true"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 1000M
+
   redis:
     image: redis:7.2.3-bookworm
     restart: always
@@ -59,8 +83,9 @@ services:
           memory: 100M
 
   postgres:
-    image: postgis/postgis:16-3.4-alpine
+    image: postgres:16.2-bookworm
     environment:
+      POSTGRES_DB: db_main
       POSTGRES_USER: db_main
       POSTGRES_PASSWORD: db_main
       PGUSER: db_main

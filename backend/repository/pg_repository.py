@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+
+from shared.settings import app_settings
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
-from shared.settings import app_settings
 
 
 @dataclass

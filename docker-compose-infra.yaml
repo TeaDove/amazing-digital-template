@@ -22,8 +22,9 @@ services:
           memory: 100M
 
   postgres:
-    image: postgis/postgis:16-3.4-alpine
+    image: postgres:16.2-bookworm
     environment:
+      POSTGRES_DB: db_main
       POSTGRES_USER: db_main
       POSTGRES_PASSWORD: db_main
       PGUSER: db_main

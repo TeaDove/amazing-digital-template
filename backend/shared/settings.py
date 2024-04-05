@@ -1,7 +1,7 @@
 import multiprocessing as mp
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class UvicornSettings(BaseModel):

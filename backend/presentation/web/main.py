@@ -4,11 +4,10 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
-from presentation.web.router import router
 from presentation.dependencies import container
+from presentation.web.router import router
 
 PARENT = Path(os.path.realpath(__file__)).parent
 with open(PARENT / "rapidoc.html", "r") as f:

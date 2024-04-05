@@ -1,5 +1,8 @@
 PYTHON ?= .venv/bin/python
 
+frontend-run:
+	cd backend && $(PYTHON) web_entrypoint.py
+
 backend-install:
 	cd backend && python3.11 -m venv .venv
 	cd backend && $(PYTHON) -m pip install poetry
@@ -20,7 +23,7 @@ infra-run:
 update:
 	git pull
 	docker compose up -d --build
-	docker compose logs -f backend_web
+	docker compose logs -f backend
 
 logs:
-	docker compose logs -f backend_web
+	docker compose logs -f backend

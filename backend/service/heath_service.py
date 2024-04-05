@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-
-from shared.base import logger
 from typing import Awaitable, Callable
-from repository.redis_repository import RedisRepository
+
 from repository.pg_repository import PgRepository
+from repository.redis_repository import RedisRepository
+from shared.base import logger
 
 
 class CheckFailed(Exception):

@@ -1,7 +1,6 @@
 from logging import _nameToLevel
 
 import uvicorn
-
 from presentation.web.main import create_app
 from shared.base import logger
 from shared.settings import app_settings
