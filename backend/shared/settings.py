@@ -18,11 +18,6 @@ class AppSettings(BaseSettings):
     uvicorn_workers: int = mp.cpu_count()
     uvicorn_log_level: str = "WARNING"
 
-    gigachat_client_secret: str
-    gigachat_auth_key: str
-    gigachat_client_id: str
-    gigachat_scope: str
-
     model_config = SettingsConfigDict(env_file=".env", env_prefix="_")
 
 

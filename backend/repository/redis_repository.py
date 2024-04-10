@@ -13,15 +13,6 @@ class RedisRepository:
         )
         self.r = redis.Redis(host=app_settings.redis_host, port=app_settings.redis_port)
 
-    def rset(self, k: str, v: str) -> None:
-        self.r.set(k, v)
-
-    def rget(self, k: str) -> bytes | None:
-        return self.r.get(k)
-
-    def keys(self, k: str) -> list[bytes]:
-        return self.r.keys(k)
-
     async def health(self) -> None:
         if not await self.ar.ping():
             raise Exception("non true ping")
