@@ -1,6 +1,9 @@
 *.code-workspace
 **/CA.pem
 volumes/*
+frontend/node_modules
+backend/cite_data.json
+backend/.env
 
 ### SAM BUILD ###
 **/.aws-sam

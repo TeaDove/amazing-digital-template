@@ -7,7 +7,7 @@ from fastapi.responses import HTMLResponse
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from presentation.dependencies import container
-from presentation.web.router import router
+from presentation.web import event_router, gigachat_router, health_router
 
 PARENT = Path(os.path.realpath(__file__)).parent
 with open(PARENT / "rapidoc.html", "r") as f:
@@ -15,7 +15,7 @@ with open(PARENT / "rapidoc.html", "r") as f:
 
 
 def create_app() -> FastAPI:
-    app = FastAPI()
+    app = FastAPI(title="Amazing digital misis", root_path="/api")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -23,7 +23,9 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    app.include_router(router)
+    app.include_router(health_router.router)
+    app.include_router(gigachat_router.router)
+    app.include_router(event_router.router)
 
     @app.on_event("startup")
     async def startup() -> None:

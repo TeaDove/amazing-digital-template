@@ -1,7 +1,11 @@
 PYTHON ?= .venv/bin/python
 
+frontend-install:
+	cd frontend && yarn
+	cd frontend && yarn build
+
 frontend-run:
-	cd backend && $(PYTHON) web_entrypoint.py
+	cd frontend && serve -s dist
 
 backend-install:
 	cd backend && python3.11 -m venv .venv
@@ -10,6 +14,9 @@ backend-install:
 
 backend-run:
 	cd backend && $(PYTHON) web_entrypoint.py
+
+backend-jup-darwin:
+	cd backend && $(PYTHON) -m jupyterlab --app-dir=/opt/homebrew/share/jupyter/lab
 
 backend-docker-exec:
 	docker compose exec backend_web /bin/bash

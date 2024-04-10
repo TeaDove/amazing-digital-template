@@ -1,35 +1,38 @@
-# {{ProjectName}}
+# This is a repository for Moscow Travel Hack 2024 ECom solution of Amazing Digital MISIS team
 
-## Сайт
-![screenshot]()
-[Попробовать!]()<br>
-[Сваггер с документаций к REST Api]()<br>
-[Примеры результатов]()
 
-### Архитектура решения
-![arch](docs/arch.png)
+## Архитектура решения
+- [Сайт](https://amazing-digital-misis.ru/) решения
+- Сваггер [документация](https://amazing-digital-misis.ru:8000/docs)
 
-### Запуск
+#### Диаграмма решения
+![arch](docs/arch.svg)<br>
+Все компаненты контейнерезированы:
+- `nginx` - Reverse-proxy, роутинг, SSL
+- `frontend` - React SPA приложение для фронтенда
+- `backend` - Python backend, использует `fastapi`, `uvicorn`, `sqlalchemy`, `pydantic` и `gigachain`
+- `redis` - Key-value СУБД
+- `postgres` - Реляционая СУБД с расширением pg-vector
 
-```bash
-cd backend
-
-touch app/.env
-# Положить в app/.env ключи в формате
-# _kandinsky_api_key='660***'
-# _kandinsky_api_secret='E31***'
-# _gigachat_credentials='OGI***'
-# _tg_bot_token='693***'
-# _photoroom_api_key='20b***' # (не обязательно)
+#### Запуск решения
+##### В докере
+C ssl
+```sh
+docker compose up # С SSL
 ```
-
-### 🐳 с помощью докера
-```bash
-make run-docker
+Без ssl
+```sh
+docker compose -f docker-compose-nossl.yaml up
 ```
-При выполнение данной команды подниматся редис и 2 сервиса - ТГ бот и РестАПИ
+Локально
+```sh
+make frontend-install
 
-### Локально
-1. Поднять редис
-2. `cd app && python3 web_entrypoint.py`
-2. `cd app && python3 tg_bot_entrypoint.py`
+make backend-install
+
+make infra-run
+
+make frontend-run # В отдельном терминале
+
+make backend-run # В отдельном терминале
+```

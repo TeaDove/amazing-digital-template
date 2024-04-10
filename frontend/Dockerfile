@@ -1,9 +1,10 @@
-FROM node:18-alpine
+FROM node:21.7.2-bookworm
 
-RUN npm i -g serve
+RUN npm install --global serve
+COPY . /
+RUN yarn
+RUN yarn build
 
-COPY . /app
+WORKDIR /dist
 
-WORKDIR /app
-
-CMD [ "serve" "."]
+CMD [ "serve", "-s"]
