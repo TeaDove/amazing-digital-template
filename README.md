@@ -1,18 +1,17 @@
-# This is a repository for Moscow Travel Hack 2024 ECom solution of Amazing Digital MISIS team
+# Amazing Digital Template
 
 
 ## Архитектура решения
-- [Сайт](https://amazing-digital-misis.ru/) решения
-- Сваггер [документация](https://amazing-digital-misis.ru:8000/docs)
+- [Сайт](locahost) решения
+- Сваггер [документация](locahost/api/docs)
 
 #### Диаграмма решения
-![arch](docs/arch.svg)<br>
 Все компаненты контейнерезированы:
 - `nginx` - Reverse-proxy, роутинг, SSL
 - `frontend` - React SPA приложение для фронтенда
-- `backend` - Python backend, использует `fastapi`, `uvicorn`, `sqlalchemy`, `pydantic` и `gigachain`
+- `backend` - Python backend, использует `fastapi`, `uvicorn`, `sqlalchemy`, `pydantic`
 - `redis` - Key-value СУБД
-- `postgres` - Реляционая СУБД с расширением pg-vector
+- `postgres` - Реляционая СУБД
 
 #### Запуск решения
 ##### В докере

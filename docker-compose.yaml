@@ -74,7 +74,9 @@ services:
           memory: 1000M
 
   postgres:
-    image: ankane/pgvector:v0.3.1
+    # image: ankane/pgvector:v0.3.1
+    # image: postgis/postgis/13-3.1-alpine
+    image: postgres:16.2-alpine3.19
     environment:
       POSTGRES_DB: db_main
       POSTGRES_USER: db_main

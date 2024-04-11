@@ -32,5 +32,13 @@ update:
 	docker compose up -d --build
 	docker compose logs -f backend
 
+all-run:
+	docker compose up -d --build
+	docker compose logs -f backend
+
+all-run-nossl:
+	docker compose -f docker-compose-nossl.yaml up -d --build
+	docker compose logs -f backend
+
 logs:
 	docker compose logs -f backend
