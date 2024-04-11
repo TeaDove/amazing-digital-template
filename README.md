@@ -49,7 +49,7 @@ make lint
 
 ### Устройство проекта
 - docs - схемы, документации, туториалы
-- backend - бекенд
+- [backend](https://github.com/TeaDove/amazing-digital-template/tree/master/backend) - бекенд
 - frontend - фронтенд
 - volumes - томы для docker, а именно для pg, redis
 - pg - файлы инициализации для pg
