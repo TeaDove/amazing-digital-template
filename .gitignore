@@ -1,6 +1,7 @@
 *.code-workspace
 **/CA.pem
 volumes/*
+!volumes/.gitkeep
 frontend/node_modules
 backend/cite_data.json
 backend/.env

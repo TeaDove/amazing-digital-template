@@ -6,6 +6,7 @@
 - Сваггер [документация](locahost/api/docs)
 
 #### Диаграмма решения
+![arch](docs/arch.svg)
 Все компаненты контейнерезированы:
 - `nginx` - Reverse-proxy, роутинг, SSL
 - `frontend` - React SPA приложение для фронтенда
