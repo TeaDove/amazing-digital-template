@@ -16,7 +16,6 @@ services:
       - redis
     volumes:
       - "./backend/.env:/app/.env"
-      - "./volumes/backend:/app/data"
     deploy:
       resources:
         limits:

@@ -5,8 +5,8 @@
 - [Сайт](locahost) решения
 - Сваггер [документация](locahost/api/docs)
 
-#### Диаграмма решения
-![arch](docs/arch.svg)
+### Диаграмма решения
+![arch](docs/arch.drawio.svg)
 Все компаненты контейнерезированы:
 - `nginx` - Reverse-proxy, роутинг, SSL
 - `frontend` - React SPA приложение для фронтенда
@@ -36,3 +36,21 @@ make frontend-run # В отдельном терминале
 
 make backend-run # В отдельном терминале
 ```
+
+### Линтинг
+Установка
+```bash
+pre-commit install
+```
+Запуск
+```bash
+make lint
+```
+
+### Устройство проекта
+- docs - схемы, документации, туториалы
+- backend - бекенд
+- frontend - фронтенд
+- volumes - томы для docker, а именно для pg, redis
+- pg - файлы инициализации для pg
+- nginx - файлы конфигурации для nginx
