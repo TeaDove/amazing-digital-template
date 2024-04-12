@@ -1,6 +1,5 @@
 # Amazing Digital Template
 
-
 ## Архитектура решения
 - [Сайт](locahost) решения
 - Сваггер [документация](locahost/api/docs)
