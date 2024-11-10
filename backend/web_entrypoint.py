@@ -1,24 +1,25 @@
-from logging import _nameToLevel
+import asyncio
 
 import uvicorn
-from presentation.web.main import create_app
-from shared.base import logger
+from presentation.web.app import create_app
+from shared.containers import Container
 from shared.settings import app_settings
 
-uvicorn_app = create_app()
+
+async def main() -> None:
+    container = await Container.build_from_settings()
+    app = await create_app(container)
+
+    server = uvicorn.Server(
+        uvicorn.Config(
+            app,
+            host=app_settings.uvicorn.host,
+            port=app_settings.uvicorn.port,
+            workers=app_settings.uvicorn.workers,
+        )
+    )
+    await server.serve()
+
 
 if __name__ == "__main__":
-    logger.info(
-        "starting server on {}:{} with {} workers",
-        app_settings.uvicorn_host,
-        app_settings.uvicorn_port,
-        app_settings.uvicorn_workers,
-    )
-
-    uvicorn.run(
-        "web_entrypoint:uvicorn_app",
-        host=app_settings.uvicorn_host,
-        port=app_settings.uvicorn_port,
-        workers=app_settings.uvicorn_workers,
-        log_level=_nameToLevel[app_settings.uvicorn_log_level],
-    )
+    asyncio.run(main())

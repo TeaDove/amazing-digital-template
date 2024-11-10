@@ -1,13 +1,12 @@
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
-from typing import Awaitable, Callable
 
+from loguru import logger
 from repository.pg_repository import PgRepository
 from repository.redis_repository import RedisRepository
-from shared.base import logger
 
 
-class CheckFailed(Exception):
-    ...
+class CheckFailedError(Exception): ...
 
 
 @dataclass
@@ -26,6 +25,6 @@ class HeathService:
             try:
                 await checker()
             except Exception as exc:
-                raise CheckFailed(f"Check failed for {service_name}") from exc
+                raise CheckFailedError(f"Check failed for {service_name}") from exc
             else:
                 logger.debug(f"{service_name} check passed")

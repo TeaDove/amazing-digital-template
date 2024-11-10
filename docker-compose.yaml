@@ -3,11 +3,11 @@ services:
     # TODO add healthcheck and autoheal
     restart: always
     environment:
-      _UVICORN_HOST: "0.0.0.0"
-      _UVICORN_PORT: 8000
-      _uvicorn_log_level: "DEBUG"
-      _REDIS_HOST: "redis"
-      _PG_HOST: "postgres"
+      _UVICORN__HOST: "0.0.0.0"
+      _UVICORN__PORT: 8000
+      _UVICORN__LOG_LEVEL: "DEBUG"
+      _REDIS__HOST: "redis"
+      _PG__HOST: "postgres"
     build:
       context: backend
       dockerfile: Dockerfile
@@ -22,19 +22,6 @@ services:
           cpus: '2.00'
           memory: 10000M
 
-  frontend:
-    restart: always
-    build:
-      context: frontend
-      dockerfile: Dockerfile
-    depends_on:
-      - backend
-    deploy:
-      resources:
-        limits:
-          cpus: '2.00'
-          memory: 3000M
-
   nginx:
     image: nginx:1.25.4-alpine
     ports:
@@ -45,7 +32,7 @@ services:
       - backend
       - frontend
     volumes:
-      - ./extra/ssl_nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/ssl_nginx.conf:/etc/nginx/conf.d/default.conf
       - /etc/letsencrypt:/etc/letsencrypt
       - /data/letsencrypt:/data/letsencrypt
 

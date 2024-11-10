@@ -1,24 +1,35 @@
 import multiprocessing as mp
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from schemas.base import PureBaseModel
+
+
+class Postgres(PureBaseModel):
+    database: str = "db_main"
+    host: str = "localhost"
+    port: int = 5432
+    username: str = "db_main"
+    password: str = "db_main"
+
+
+class Uvicorn(PureBaseModel):
+    host: str = "localhost"
+    port: int = 8000
+    workers: int = mp.cpu_count() * 2 + 1
+    log_level: str = "WARNING"
+
+
+class Redis(PureBaseModel):
+    host: str = "localhost"
+    port: int = 6379
 
 
 class AppSettings(BaseSettings):
-    pg_database: str = "db_main"
-    pg_host: str = "localhost"
-    pg_port: int = 5432
-    pg_username: str = "db_main"
-    pg_password: str = "db_main"
+    pg: Postgres = Postgres()
+    uvicorn: Uvicorn = Uvicorn()
+    redis: Redis = Redis()
 
-    redis_host: str = "localhost"
-    redis_port: int = 6379
-
-    uvicorn_host: str = "localhost"
-    uvicorn_port: int = 8000
-    uvicorn_workers: int = mp.cpu_count()
-    uvicorn_log_level: str = "WARNING"
-
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="_")
+    model_config = SettingsConfigDict(env_file=".env", env_prefix="_", env_nested_delimiter="__")
 
 
 app_settings = AppSettings()
